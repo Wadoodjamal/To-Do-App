@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_app/model/tasks_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String? newTaskTitle;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -28,6 +31,9 @@ class AddTaskScreen extends StatelessWidget {
               decoration: InputDecoration(
                 fillColor: Colors.lightBlueAccent,
               ),
+              onChanged: (title) {
+                newTaskTitle = title;
+              },
             ),
             SizedBox(
               height: 5.0,
@@ -37,7 +43,12 @@ class AddTaskScreen extends StatelessWidget {
                 backgroundColor: Colors.lightBlueAccent,
                 elevation: 8.0,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<TaskData>(context, listen: false)
+                    .addNewTask(newTaskTitle!);
+                print('Working');
+                Navigator.pop(context);
+              },
               child: Text(
                 'Add',
                 style: TextStyle(

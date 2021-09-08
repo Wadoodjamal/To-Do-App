@@ -4,7 +4,7 @@ class Tasks {
 
   Tasks({this.isChecked, this.title});
 
-  void toggleCheckValue() {
+  void toggleTask() {
     isChecked = !isChecked!;
   }
 }

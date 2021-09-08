@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app/model/tasks_data.dart';
 import 'package:to_do_app/screens/add_task_screen.dart';
 import 'package:to_do_app/widgets/task_list.dart';
+import 'package:provider/provider.dart';
 
 class ToDoTaskScreen extends StatelessWidget {
   @override
@@ -10,17 +12,15 @@ class ToDoTaskScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => AddTaskScreen(),
-          );
-        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(
           Icons.add,
           size: 30.0,
         ),
+        onPressed: () {
+          showModalBottomSheet(
+              context: context, builder: (context) => AddTaskScreen());
+        },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class ToDoTaskScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '12 tasks',
+                    '${Provider.of<TaskData>(context).getLength()} tasks',
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                   ),
                 ],

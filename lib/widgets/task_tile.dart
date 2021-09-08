@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 class TaskTileState extends StatelessWidget {
   final bool? isChecked;
   final Function(bool?)? toggleCheckBox;
+  final Function()? toggleLongPress;
   final String? title;
 
-  TaskTileState({this.isChecked, this.toggleCheckBox, this.title});
+  TaskTileState({
+    this.isChecked,
+    this.toggleCheckBox,
+    this.title,
+    this.toggleLongPress,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: toggleLongPress,
       leading: Text(
         title!,
         style: TextStyle(
